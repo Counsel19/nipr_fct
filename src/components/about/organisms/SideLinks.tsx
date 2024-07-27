@@ -1,27 +1,14 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
-const sideLinks = [
-  {
-    text: "Ethics Code",
-    link: "/ethics",
-  },
-  {
-    text: "Leadership",
-    link: "/leaders",
-  },
-  {
-    text: "Services",
-    link: "/services",
-  },
-  {
-    text: "Facts About Nipr",
-    link: "/about/facts-about-nipr",
-  },
-];
-interface SideLinksProps {}
+interface SideLinksProps {
+  sideLinks: {
+    link: string;
+    text: string;
+  }[];
+}
 
-const SideLinks: FC<SideLinksProps> = () => {
+const SideLinks: FC<SideLinksProps> = ({ sideLinks }) => {
   return (
     <div>
       {sideLinks.map((item, index) => (

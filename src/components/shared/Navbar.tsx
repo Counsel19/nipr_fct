@@ -3,11 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import Branding from "./atoms/Branding";
 import { buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import UserAvatar from "./atoms/UserAvatar";
 
 interface NavbarProps {}
 const Navbar: FC<NavbarProps> = () => {
   const [userHasScrolled, setUserHasScrolled] = useState(false);
   const { pathname } = useLocation();
+  const { userProfile } = useSelector((store: RootState) => store.auth);
 
   const handleScroll = () => {
     if (window.scrollY >= 20) {
@@ -27,10 +31,8 @@ const Navbar: FC<NavbarProps> = () => {
   return (
     <div
       className={cn(
-        "right-0 left-0 top-0 z-30 py-6 fixed  bg-white",
-        !userHasScrolled && pathname === "/"
-          ? "bg-nav-gradient "
-          : "bg-white"
+        " py-6  bg-white",
+        !userHasScrolled && pathname === "/" ? "bg-nav-gradient " : "bg-white"
       )}
     >
       <div className="w-frame flex justify-between items-center ">
@@ -65,17 +67,28 @@ const Navbar: FC<NavbarProps> = () => {
           ))}
         </ul>
 
-        <Link
-          to={"/login"}
-          className={cn(
-            buttonVariants({
-              className:
-                "bg-primary-gradient min-w-[16.3rem] font-playfairDisplay text-xl h-[4.5rem] font-semibold",
-            })
-          )}
-        >
-          Login
-        </Link>
+        {userProfile ? (
+          <Link to={"/account/profile"}>
+            <UserAvatar
+              width="w-[50px]"
+              height="h-[50px]"
+              imgUrl=""
+              name={userProfile.name}
+            />
+          </Link>
+        ) : (
+          <Link
+            to={"/login"}
+            className={cn(
+              buttonVariants({
+                className:
+                  "bg-primary-gradient min-w-[16.3rem] font-playfairDisplay text-xl h-[4.5rem] font-semibold",
+              })
+            )}
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

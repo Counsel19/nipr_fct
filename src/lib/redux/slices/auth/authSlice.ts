@@ -25,7 +25,12 @@ interface profileSliceState {
 const userProfileRetrieved = sessionStorage.getItem("userProfile");
 
 const initialState: profileSliceState = {
-  userProfile: userProfileRetrieved ? JSON.parse(userProfileRetrieved) : null,
+  userProfile: userProfileRetrieved
+    ? JSON.parse(userProfileRetrieved)
+    : {
+        name: "Joe Biden",
+        email: "joe@gmail.com",
+      },
   isLoading: false,
   redirectPath: "/",
   token: sessionStorage.getItem("authToken") || "",

@@ -3,11 +3,15 @@ import { cn } from "@/lib/utils";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
-interface JoinNiprFctProps {}
-const JoinNiprFct: FC<JoinNiprFctProps> = () => {
+interface JoinNiprFctProps {
+  bgImage: string;
+  showPattarn?: boolean;
+}
+
+const JoinNiprFct: FC<JoinNiprFctProps> = ({ bgImage, showPattarn }) => {
   return (
     <div className="relative mb-[10rem]">
-      <div className="h-[90.5rem] relative flex items-center bg-[url('/images/join_nipr_fct.jpg')] ">
+      <div className={`h-[90.5rem] relative flex items-center bg-cover bg-no-repeat ${bgImage} `}>
         <div className="bg-[#00000033] absolute top-0 right-0 bottom-0 left-0" />
         <div className="absolute left-0 w-[40%] h-full bg-primary" />
 
@@ -45,11 +49,13 @@ const JoinNiprFct: FC<JoinNiprFctProps> = () => {
           </Link>
         </div>
       </div>
-      <img
-        src="/images/bgPatterns/pattarn_rect.svg"
-        alt=""
-        className="w-fit absolute h-fit -bottom-[10rem] right-0 -z-10"
-      />
+      {showPattarn && (
+        <img
+          src={"/images/bgPatterns/pattarn_rect.svg"}
+          alt="pattarn_rect"
+          className="w-fit absolute h-fit -bottom-[10rem] right-0 -z-10"
+        />
+      )}
     </div>
   );
 };

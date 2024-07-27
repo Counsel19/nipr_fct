@@ -8,7 +8,7 @@ const FactAboutNipr: FC<FactAboutNiprProps> = () => {
     <div className="space-y-20">
       <PageTitle title="About" />
 
-      <div className="w-frame ">
+      <div className="w-frame pagePadding">
         <h3 className="text-primary mb-8 font-semibold leading-[5.56rem] text-[4.2rem]">
           Facts About NIPR
         </h3>

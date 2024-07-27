@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 interface HaveAQuestionProps {}
 const HaveAQuestion: FC<HaveAQuestionProps> = () => {
   return (
-    <div className="flex flex-col  gap-8 justify-center items-center">
+    <div className="flex  mt-[10rem] flex-col  gap-8 justify-center items-center">
       <h4 className="uppercase text-[4rem] leading-[4.4rem]">
         Have A Question?
       </h4>

@@ -18,7 +18,7 @@ const Home: FC<HomeProps> = () => {
       <MembershipSnapshot />
       <UpcomingEvents />
       <Leadership />
-      <JoinNiprFct />
+      <JoinNiprFct showPattarn bgImage="bg-[url('/images/join_nipr_fct.jpg')]" />
       <OurBlog />
     </div>
   );
