@@ -22,15 +22,15 @@ interface profileSliceState {
 
 // type UserProfileKeys = keyof UserProfile;
 
+// {
+//   name: "Joe Biden",
+//   email: "joe@gmail.com",
+// },
+
 const userProfileRetrieved = sessionStorage.getItem("userProfile");
 
 const initialState: profileSliceState = {
-  userProfile: userProfileRetrieved
-    ? JSON.parse(userProfileRetrieved)
-    : {
-        name: "Joe Biden",
-        email: "joe@gmail.com",
-      },
+  userProfile: userProfileRetrieved ? JSON.parse(userProfileRetrieved) : null,
   isLoading: false,
   redirectPath: "/",
   token: sessionStorage.getItem("authToken") || "",

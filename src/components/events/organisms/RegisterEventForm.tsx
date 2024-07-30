@@ -16,7 +16,7 @@ const RegisterEventForm: FC<RegisterEventFormProps> = () => {
     surname: "",
   });
 
-  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const name = e.target.name;
     const value = e.target.value;
 

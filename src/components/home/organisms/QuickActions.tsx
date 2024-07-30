@@ -22,13 +22,8 @@ const quickActionList = [
 interface QuickActionsProps {}
 const QuickActions: FC<QuickActionsProps> = () => {
   return (
-    <div className="relative h-[50rem] flex items-center">
-      <img
-        src="/images/bgPatterns/pattarn_rect.png"
-        alt="bg_pattern"
-        className="absolute top-0 bottom-0 left-0 w-fit"
-      />
-      <div className="grid grid-cols-3 gap-12 w-frame">
+    <div className=" lg:h-[50rem] flex items-center">
+      <div className="grid lg:grid-cols-3 gap-12 w-frame">
         {quickActionList.map((item, index) => (
           <React.Fragment key={index}>
             <QuickActionsCard {...item} />

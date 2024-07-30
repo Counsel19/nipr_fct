@@ -23,13 +23,8 @@ interface LeadershipProps {}
 const Leadership: FC<LeadershipProps> = () => {
   return (
     <div className="relative">
-      <img
-        src="/images/bgPatterns/pattarn_rect.svg"
-        alt="Pattern"
-        className="w-fit h-fit  absolute top-0 right-0"
-      />
-      <div className="w-frame space-y-12 relative" >
-        <h3 className="font-bold text-[3.457rem] leading-[3.8rem] text-[#E8362B]">
+      <div className="w-frame space-y-12 relative">
+        <h3 className="font-bold text-[3rem] lg:text-[3.457rem] leading-[3.8rem] text-[#E8362B]">
           FCT Chapter Leadership
         </h3>
         <div className="flex flex-col lg:flex-row gap-12">

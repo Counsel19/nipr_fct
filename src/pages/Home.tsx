@@ -14,11 +14,11 @@ const Home: FC<HomeProps> = () => {
     <div className="space-y-20">
       <HomeCarosel />
       <QuickNIPRInfo />
+      <JoinNiprFct showPattarn bgImage="bg-[url('/images/join_nipr_fct.jpg')]" />
       <QuickActions />
       <MembershipSnapshot />
-      <UpcomingEvents />
       <Leadership />
-      <JoinNiprFct showPattarn bgImage="bg-[url('/images/join_nipr_fct.jpg')]" />
+      <UpcomingEvents />
       <OurBlog />
     </div>
   );

@@ -23,7 +23,7 @@ const AboutUsCards: FC<AboutUsCardsProps> = () => {
     <div className="w-frame ">
       <div className="grid lg:grid-cols-2 gap-8 lg:p-[10rem]">
         {aboutUsCardList.map((item, index) => (
-          <div key={index} className={cn(index === 1 && "translate-y-[20rem]")}>
+          <div key={index} className={cn(index === 1 && "lg:translate-y-[20rem]")}>
             <AboutUsCard {...item} />
           </div>
         ))}

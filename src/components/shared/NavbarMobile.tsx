@@ -1,10 +1,19 @@
-import { FC } from 'react'
+import { FC } from "react";
+import Branding from "./atoms/Branding";
+import { AlignJustify } from "lucide-react";
+import { Button } from "../ui/button";
 
-interface NavbarMobileProps {
-  
-}
+interface NavbarMobileProps {}
 const NavbarMobile: FC<NavbarMobileProps> = () => {
-    return <div>NavbarMobile</div>
-}
+  return (
+    <div className="flex p-4 justify-between items-center">
+      <Branding />
 
-export default NavbarMobile
+      <Button variant={"ghost"}>
+        <AlignJustify />
+      </Button>
+    </div>
+  );
+};
+
+export default NavbarMobile;

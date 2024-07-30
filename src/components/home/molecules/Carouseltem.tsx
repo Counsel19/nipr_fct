@@ -50,11 +50,13 @@ const Carouseltem: FC<CarouseltemProps> = ({
 
         <div className="z-20 relative h-full flex items-center w-frame ">
           <div className="space-y-6 max-w-[80.0rem]">
-            <h3 className="text-[2.4rem] text-white">{tagline}</h3>
-            <h2 className="text-[6.2rem] text-white font-bold leading-[8rem]">
+            <h3 className=" text-[1.2rem] lg:text-[2.4rem] leading-[1.6rem] font-bold text-white">
+              {tagline}
+            </h3>
+            <h2 className=" text-[2.4rem] lg:text-[6.2rem] leading-[3.1rem]  lg:leading-[8rem] text-white font-bold ">
               {headingText}
             </h2>
-            <p className="text-[#D9D9D9] text-[3rem] font-normal leading-[3.2rem]">
+            <p className="text-[#D9D9D9] text-base lg:text-[3rem] font-normal leading-[2.1rem] lg:leading-[3.2rem]">
               {description}
             </p>
 
@@ -65,7 +67,7 @@ const Carouseltem: FC<CarouseltemProps> = ({
               className={cn(
                 buttonVariants({
                   className:
-                    "bg-primary-gradient font-playfairDisplay font-semibold  text-[2rem] h-[5rem]",
+                    "bg-primary-gradient font-playfairDisplay font-semibold  lg:text-[2rem] lg:h-[5rem]",
                 })
               )}
             >

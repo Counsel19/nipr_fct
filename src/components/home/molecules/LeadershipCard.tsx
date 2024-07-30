@@ -15,8 +15,12 @@ const LeadershipCard: FC<LeadershipCardProps> = ({ image, name, position }) => {
       />
 
       <div className="flex flex-col gap-6 text-white p-8 bg-primary">
-        <h3 className="font-semibold text-[2.8rem] leading-[3rem]">{name}</h3>
-        <span className="italic  font-roboto text-2xl">{position}</span>
+        <h3 className="font-semibold text-[2.4rem]  lg:text-[2.8rem] leading-[3rem]">
+          {name}
+        </h3>
+        <span className="italic  font-roboto text-[1.8rem]  lg:text-2xl">
+          {position}
+        </span>
       </div>
     </div>
   );

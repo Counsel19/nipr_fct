@@ -14,7 +14,7 @@ const MembershipSnapshotCard: FC<MembershipSnapshotCardProps> = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-8 items-center justify-center p-8 w-[19.5rem] bg-white",
+        "flex flex-col gap-8 items-center justify-center p-8 lg:w-[19.5rem] bg-white",
         borderRadiusClass
       )}
     >

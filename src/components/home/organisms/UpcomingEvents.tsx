@@ -50,11 +50,13 @@ const UpcomingEvents: FC<UpcomingEventsProps> = () => {
   return (
     <div className="w-frame space-y-12">
       <div className="flex justify-between items-center">
-        <h3 className="text-[3.45rem] text-[#E8362B]">Upcoming Events</h3>
-        <Button className="rounded-none bg-white text-primary">View All</Button>
+        <h3 className=" text-[2.4rem] leading-[3.2rem] lg:text-[3.45rem] text-[#E8362B]">
+          Upcoming Events
+        </h3>
+        <Button className="rounded-none bg-white text-[1.2rem] uppercase hover:bg-rose-50 text-primary">View All</Button>
       </div>
 
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid lg:grid-cols-2 gap-10">
         {allEvents.map((event) => (
           <React.Fragment key={event.id}>
             <UpcomingEventCard {...event} />

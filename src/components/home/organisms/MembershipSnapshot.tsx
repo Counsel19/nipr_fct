@@ -27,16 +27,11 @@ const membershipSnapshotInfo = [
 interface MembershipSnapshotProps {}
 const MembershipSnapshot: FC<MembershipSnapshotProps> = () => {
   return (
-    <div className="h-[50rem] bg-primary relative">
-      <img
-        src="/images/bgPatterns/spiral.png"
-        alt="spiral"
-        className="absolute -right-[15rem] top-0 bottom-0 w-fit "
-      />
-      <div className="flex items-center gap-[3rem] relative h-full  w-frame">
-        <div className="text-white flex-1 space-y-8">
+    <div className="lg:h-[50rem] bg-[#FDF3F3] ">
+      <div className="flex flex-col lg:flex-row items-center gap-[3rem] relative h-full  w-frame">
+        <div className="text-[#231F20] flex-1 space-y-8">
           <h4 className="font-bold text-3xl leading-[3rem]">Member Snapshot</h4>
-          <p className="text-base leadning-[2.4rem]">
+          <p className="text-base  leading-[2.5rem]">
             Our membership brings together a diverse community of communication
             and public relations professionals across Nigeria. Our members
             contribute critical skills and expertise across a wide spectrum of

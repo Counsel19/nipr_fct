@@ -9,15 +9,10 @@ const Events: FC<EventsProps> = () => {
   return (
     <div className=" space-y-20 relative">
       <PageTitle title="Events" />
-      <img
-        src={"/images/bgPatterns/pattarn_rect.svg"}
-        alt="pattarn_rect"
-        className="absolute  right-0 w-fit h-fit z-0 "
-      />
 
       <div className="space-y-20  relative">
         <div className="w-frame">
-          <p className="  relative font-poppins text-[2.4rem] leading-[3.6rem] w-[60%]">
+          <p className="  relative font-poppins text-[1.6rem] lg:text-[2.4rem] leading-[3.6rem] lg:w-[60%]">
             Through our regional, national and special interest groups, we run a
             varied programme of events around the UK. We also hold an Annual
             Conference as well as several Awards events.

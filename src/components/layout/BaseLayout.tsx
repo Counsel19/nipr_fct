@@ -19,7 +19,7 @@ const BaseLayout: FC<BaseLayoutProps> = () => {
           <NavbarMobile />
         </div>
 
-        <div className={cn(pathname !== "/" && "mt-[9rem]")}>
+        <div className={cn(pathname !== "/" && "md:mt-[9rem]")}>
           <Outlet />
         </div>
 

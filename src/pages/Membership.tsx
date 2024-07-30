@@ -8,11 +8,11 @@ import { FC } from "react";
 const sideLinks = [
   {
     text: "Membership Upgrade",
-    link: "/membership-upgrade",
+    link: "/membership/upgrade",
   },
   {
     text: "Membership Criteria",
-    link: "/membership-criteria",
+    link: "/membership/criteria",
   },
 ];
 

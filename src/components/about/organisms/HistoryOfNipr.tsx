@@ -4,10 +4,10 @@ interface HistoryOfNiprProps {}
 const HistoryOfNipr: FC<HistoryOfNiprProps> = () => {
   return (
     <div className="space-y-8">
-      <h3 className="uppercase  text-[4.8rem] leading-[5.2rem]">
+      <h3 className="uppercase text-[3.2rem]  lg:text-[4.8rem] leading-[5.2rem]">
         History of NIPR
       </h3>
-      <p className="text-[1.6rem] leading-[2.56rem]">
+      <p className=" text-base lg:text-[1.6rem] leading-[2.56rem]">
         The Nigeria institute of public relations was established in 1963 as the
         public relations association of Nigeria, in 1972, it metamorphosed into
         Nigerian Institute of Public Relations (NIPR). In 1989, it established a
@@ -22,7 +22,7 @@ const HistoryOfNipr: FC<HistoryOfNiprProps> = () => {
         territory, Abuja.
       </p>
 
-      <div className="space-y-6 text-[1.6rem] leading-[2.56rem]">
+      <div className="space-y-6 text-base lg:text-[1.6rem] leading-[2.56rem]">
         <h5 className="uppercase font-semibold">Objectives</h5>
         <p>The fundamental objective of NIPR includes;</p>
         <ol className="list-decimal list-inside">

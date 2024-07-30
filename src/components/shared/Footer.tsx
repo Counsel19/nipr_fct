@@ -54,30 +54,30 @@ const addressList = [
 interface FooterProps {}
 const Footer: FC<FooterProps> = () => {
   return (
-    <div className="h-[77.6rem] flex flex-col  bg-primary relative">
+    <div className="lg:h-[77.6rem] flex flex-col  bg-primary relative">
       <img
         src="/images/bgPatterns/footer_pattern.svg"
         alt="/images/bgPatterns/footer_pattern.svg"
-        className="absolute top-0 bottom-0 left-0 w-[43%]"
+        className="absolute top-0 lg:bottom-0 left-0  h-[15%] lg:h-full lg:w-[43%]"
       />
-      <div className="w-frame h-[90%] flex">
-        <div className="w-[40%] h-full flex  py-[10rem] ">
+      <div className="w-frame lg:h-[90%] flex flex-col lg:flex-row">
+        <div className="lg:w-[40%] h-full flex p-[3rem] lg:py-[10rem] ">
           <div className="text-white space-y-16">
-            <h3 className="font-roboto uppercase font-medium text-[4rem] leading-[4.6rem]">
+            <h3 className="font-roboto uppercase font-medium text-2xl lg:text-[4rem] leading-[3rem] lg:leading-[4.6rem]">
               Nigerian Institute of public relations
             </h3>
-            <h3 className=" text-[5.6rem] leading-[7.465rem]">
+            <h3 className=" text-[2.4rem] leading-[3.1rem] lg:text-[5.6rem] lg:leading-[7.465rem]">
               Strategy, Influence, Responsibility
             </h3>
           </div>
         </div>
 
-        <div className="w-[60%] flex text-white p-[10rem]">
+        <div className="lg:w-[60%] flex text-white p-[3rem] lg:p-[10rem]">
           <div className="grid lg:grid-cols-[2fr_3fr] gap-8">
             <div className="flex flex-col gap-12">
               {quickLinks.map((linkItem, index) => (
                 <Link
-                  className="text-2xl leading-[2.34rem]"
+                  className="text-[1.6rem] lg:text-2xl leading-[2.34rem]"
                   key={index}
                   to={linkItem.link}
                 >
@@ -92,7 +92,7 @@ const Footer: FC<FooterProps> = () => {
                     <h6 className="font-semibold text-[1.6rem] leading-[1.875rem]">
                       {addressItem.name}
                     </h6>
-                    <span className="text-[1.6rem]  font-light font-roboto leading-[1.875rem]">
+                    <span className="text-[1.6rem]  font-thin font-roboto leading-[1.875rem]">
                       {addressItem.location}
                     </span>
                   </div>
@@ -109,7 +109,7 @@ const Footer: FC<FooterProps> = () => {
               </div>
               <div className="flex gap-8">
                 <span className="rounded-full grid place-content-center border h-[3em] w-[3rem]">
-                  <FaLinkedin size={20}/>
+                  <FaLinkedin size={20} />
                 </span>
                 <span className="rounded-full grid place-content-center border h-[3rem] w-[3rem]">
                   <FaInstagram size={20} />

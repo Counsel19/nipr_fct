@@ -28,7 +28,7 @@ interface HeldEventsProps {}
 const HeldEvents: FC<HeldEventsProps> = () => {
   return (
     <div className="w-frame space-y-12">
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid lg:grid-cols-2 gap-10">
         {allEvents.map((event) => (
           <React.Fragment key={event.id}>
             <UpcomingEventCard {...event} />
