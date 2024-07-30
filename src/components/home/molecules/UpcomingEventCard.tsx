@@ -20,7 +20,10 @@ const UpcomingEventCard: FC<UpcomingEventCardProps> = ({
   slug,
 }) => {
   return (
-    <Link to={`${slug}`} className="flex flex-col bg-white gap-2 w-full h-full">
+    <Link
+      to={`/events/${slug}`}
+      className="flex flex-col bg-white gap-2 w-full h-full"
+    >
       <div className="relative w-full h-[32.2rem] ">
         <img
           src={image}
@@ -32,7 +35,9 @@ const UpcomingEventCard: FC<UpcomingEventCardProps> = ({
             <span className="lg:w-[2.8rem] lg:h-[2.8rem] rounded-full border border-white grid place-content-center">
               <Calendar size={16} />
             </span>
-            <p className="text-[1.2rem] lg:text-[1.6rem]">{format(date, "dd/mm/yyyy")}</p>
+            <p className="text-[1.2rem] lg:text-[1.6rem]">
+              {format(date, "dd/mm/yyyy")}
+            </p>
           </div>
           <div className="grid grid-cols-[1fr_5fr] items-center">
             <span className=" w-[2.8rem] h-[2.8rem] rounded-full border border-white grid place-content-center">
