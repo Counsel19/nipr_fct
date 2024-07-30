@@ -7,7 +7,7 @@ interface NavbarMobileProps {}
 const NavbarMobile: FC<NavbarMobileProps> = () => {
   return (
     <div className="flex p-4 justify-between items-center">
-      <Branding />
+      <Branding  />
 
       <Button variant={"ghost"}>
         <AlignJustify />

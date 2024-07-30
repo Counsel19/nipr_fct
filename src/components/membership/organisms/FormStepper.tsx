@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import  { FC } from "react";
 import Step from "../atoms/Step";
 import { cn } from "@/lib/utils";
 
