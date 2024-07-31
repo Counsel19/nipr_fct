@@ -1,6 +1,6 @@
 export interface IQalification {
   qualification_name: string;
-  qualification_image: string;
+  qualification_image: File | null;
 }
 
 export interface IMembershipForm {
@@ -35,8 +35,8 @@ export interface IMembershipForm {
   is_member: number;
 
   grade_id: string;
-  curernt_grade_date: string;
-  dob: string;
+  curernt_grade_date: Date | null;
+  dob: Date | null;
 
   qualifications: IQalification[];
 }

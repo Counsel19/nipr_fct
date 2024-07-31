@@ -3,8 +3,13 @@ import CareerDetails from "@/components/membership/organisms/CareerDetails";
 import FormStepper from "@/components/membership/organisms/FormStepper";
 import PageTitle from "@/components/shared/molecules/PageTitle";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
+import { applyForMembership } from "@/lib/redux/slices/membership/membershipThunk";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import { IMembershipForm, IQalification } from "@/types/membership";
+import { AxiosError } from "axios";
 import { FC, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 interface MembershipFormProps {}
 const MembershipForm: FC<MembershipFormProps> = () => {
@@ -19,7 +24,7 @@ const MembershipForm: FC<MembershipFormProps> = () => {
     email: "",
 
     phone: "",
-    dob: "",
+    dob: null,
 
     job_title: "",
 
@@ -42,28 +47,33 @@ const MembershipForm: FC<MembershipFormProps> = () => {
     is_member: 0,
 
     grade_id: "",
-    curernt_grade_date: "",
+    curernt_grade_date: null,
 
     qualifications: [
       {
         qualification_name: "",
-        qualification_image: "",
+        qualification_image: null,
       },
       {
         qualification_name: "",
-        qualification_image: "",
+        qualification_image: null,
       },
     ],
   });
   const [currentGradeDate, setCurrentGradeDate] = useState<Date>();
+  const [dateOfBirth, setDateOfBirth] = useState<Date>();
   const [qualification1, setQualification1] = useState<IQalification>({
     qualification_name: "",
-    qualification_image: "",
+    qualification_image: null,
   });
   const [qualification2, setQualification2] = useState<IQalification>({
     qualification_name: "",
-    qualification_image: "",
+    qualification_image: null,
   });
+
+  const { isLoading } = useSelector((store: RootState) => store.membership);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleOnchange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -76,6 +86,47 @@ const MembershipForm: FC<MembershipFormProps> = () => {
 
   const handleSelectChange = (value: string, name: string) => {
     setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const handleApply = async () => {
+    try {
+      if (!dateOfBirth || !currentGradeDate)
+        return toast({ title: "Please Provide all Fields" });
+      const res = await dispatch(
+        applyForMembership({
+          ...inputValue,
+          qualifications: [qualification1, qualification2],
+          dob: dateOfBirth,
+          curernt_grade_date: currentGradeDate,
+        })
+      );
+      if (res.type.includes("rejected"))
+        return toast({
+          title: "An Error Occurred",
+          description: res.payload as string,
+          variant: "destructive",
+        });
+      toast({
+        title: "Congratulations! Application Sent",
+        description: "We will get back to you shotly",
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400 || error.response?.status === 401) {
+          return toast({
+            title: "Error Sending Application",
+            description: error.response?.data,
+            variant: "destructive",
+          });
+        }
+      }
+
+      toast({
+        title: "Error Sending Application",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -101,6 +152,8 @@ const MembershipForm: FC<MembershipFormProps> = () => {
             <BasicDetailsForm
               inputValue={inputValue}
               handleOnchange={handleOnchange}
+              setDateOfBirth={setDateOfBirth}
+              dateOfBirth={dateOfBirth}
             />
           ) : (
             <CareerDetails
@@ -117,11 +170,22 @@ const MembershipForm: FC<MembershipFormProps> = () => {
           )}
 
           <div className="grid grid-cols-2 gap-8">
-            <Button variant={"outline"} className="w-full">
-              Cancel
+            <Button
+              onClick={() => {
+                currentStep > 1 ? setCurrentStep(currentStep - 1) : null;
+              }}
+              variant={"outline"}
+              className="w-full"
+            >
+              Cancel/Prev
             </Button>
             <Button
-              onClick={() => setCurrentStep(currentStep + 1)}
+              isLoading={isLoading}
+              onClick={() => {
+                currentStep === 1
+                  ? handleApply()
+                  : setCurrentStep(currentStep + 1);
+              }}
               className="w-full bg-primary"
             >
               Next

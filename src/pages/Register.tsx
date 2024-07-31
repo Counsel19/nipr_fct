@@ -17,7 +17,9 @@ const Register: FC<LoginProps> = () => {
     email: "",
   });
 
-  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleOnchange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const name = e.target.name;
     const value = e.target.value;
 
@@ -28,11 +30,14 @@ const Register: FC<LoginProps> = () => {
     <div className="grid lg:grid-cols-2 ">
       <div className="space-y-12 w-full p-12">
         <div className="w-[15.1rem]">
-          <Branding />
+          <Branding variant />
         </div>
 
         <div className="w-full ">
           <div className="space-y-12 mx-auto w-full lg:w-[70%]">
+            <div className="w-[15.1rem]">
+              <Branding variant />
+            </div>
             <h3 className="font-semibold text-[3rem] leading-[3.8rem]">
               Sign Up
             </h3>

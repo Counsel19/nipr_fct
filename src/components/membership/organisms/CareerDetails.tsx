@@ -206,7 +206,14 @@ const CareerDetails: FC<CareerDetailsProps> = ({
           label="  Name of professional body"
           name=""
         />
-        <FileUpload />
+        <FileUpload
+          setFile={(file: File) =>
+            setQualification1({
+              ...qualification1,
+              qualification_image: file,
+            })
+          }
+        />
       </div>
       <div className="space-y-8">
         <LabledInput
@@ -221,7 +228,14 @@ const CareerDetails: FC<CareerDetailsProps> = ({
           label="  Name of professional body"
           name=""
         />
-        <FileUpload />
+        <FileUpload
+          setFile={(file: File) =>
+            setQualification2({
+              ...qualification2,
+              qualification_image: file,
+            })
+          }
+        />
       </div>
     </div>
   );

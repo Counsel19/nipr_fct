@@ -21,6 +21,7 @@ import MembershipForm from "./pages/MembershipForm";
 import News from "./pages/News";
 import Rosources from "./pages/Rosources";
 import Gallery from "./pages/Gallery";
+import PaymentPage from "./pages/PaymentPage";
 
 axios.defaults.baseURL = "https://api.voranaija.com/api";
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="join-as-student" element={<MembershipForm />} />
             <Route path="join-as-associate" element={<MembershipForm />} />
             <Route path="join-as-professional" element={<MembershipForm />} />
+            <Route path="payment" element={<PaymentPage />} />
           </Route>
           <Route path="gallery" element={<Gallery />} />
           <Route path="resources" element={<Rosources />} />

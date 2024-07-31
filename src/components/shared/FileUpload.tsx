@@ -1,33 +1,19 @@
 import { CloudUpload } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
 
 import { FC } from "react";
-import { AppDispatch } from "@/lib/redux/store";
-import { toast } from "../ui/use-toast";
 
+interface FileUploadProps {
+  setFile: (file: File) => void;
+}
 
-interface FileUploadProps {}
-
-const FileUpload: FC<FileUploadProps> = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
+const FileUpload: FC<FileUploadProps> = ({ setFile }) => {
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      const postData = new FormData();
-      postData.append("name", acceptedFiles[0].name);
-
-      postData.append("file", acceptedFiles[0]);
-
-      //   await dispatch(uploadFile(postData));
-
-      return toast({
-        title: "File Uploaded successfully",
-        variant: "success",
-      });
+      setFile(acceptedFiles[0]);
     },
-    [dispatch]
+    [setFile]
   );
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
@@ -38,12 +24,15 @@ const FileUpload: FC<FileUploadProps> = () => {
         {...getRootProps()}
         className="border border-1  w-full border-gray-300 rounded-lg p-6 text-center mb-8"
       >
-        <div className=" mb-8 space-y-8 flex flex-col items-center">
+        <div className=" cursor-pointer mb-8 space-y-8 flex flex-col items-center">
           <div className="p-6 rounded-full bg-slate-200 w-fit ">
             <CloudUpload />
           </div>
           <div className="font-normal text-base">
-            <input {...getInputProps()} accept=".csv" />
+            <input
+              {...getInputProps()}
+              accept=".svg, .png, .jpg, .jpeg, .gif"
+            />
             {isDragActive ? (
               <p className="font-semibold ">Drop Files Here...</p>
             ) : acceptedFiles.length === 0 ? (
@@ -53,14 +42,13 @@ const FileUpload: FC<FileUploadProps> = () => {
                   drag and drop
                 </p>
                 <p className="text-[1.2rem] font-normal text-gray-400">
-                  CSV file
+                  SVG, PNG, JPG or GIF
                 </p>
               </>
             ) : (
               <>
-                <p className="font-semibold ">Uploading Files...</p>
-                <p className="text-[1.2rem] font-normal text-gray-400">
-                  CSV file
+                <p title="click to change" className="font-semibold ">
+                  {acceptedFiles[0].name}
                 </p>
               </>
             )}

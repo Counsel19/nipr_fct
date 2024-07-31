@@ -1,14 +1,21 @@
 import LabledInput from "@/components/shared/molecules/LabledInput";
+import SelectDate from "@/components/shared/SelectDate";
 import { IMembershipForm } from "@/types/membership";
 import React, { FC } from "react";
 
 interface BasicDetailsFormProps {
-  handleOnchange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleOnchange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   inputValue: IMembershipForm;
+  dateOfBirth: Date | undefined;
+  setDateOfBirth: React.Dispatch<React.SetStateAction<Date | undefined>>;
 }
 const BasicDetailsForm: FC<BasicDetailsFormProps> = ({
   inputValue,
   handleOnchange,
+  dateOfBirth,
+  setDateOfBirth,
 }) => {
   return (
     <div className="space-y-12">
@@ -38,13 +45,22 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({
           />
         </div>
         <div className="grid lg:grid-cols-2 gap-8">
-          <LabledInput
-            className="bg-slate-100"
-            value={inputValue.dob}
-            setInputValue={handleOnchange}
-            label="Date of Birth"
-            name="dob"
-          />
+          <div className="space-y-4 flex flex-col">
+            <label
+              className="font-medium text-base leading-[2.03rem]"
+              htmlFor=""
+            >
+              if yes, what is your current grade of membership
+            </label>
+            <div className="w-full">
+              <SelectDate
+                classes="w-full rounded-lg"
+                placeholder="Select Date"
+                date={dateOfBirth}
+                setDate={setDateOfBirth}
+              />
+            </div>
+          </div>
           <LabledInput
             className="bg-slate-100"
             value={inputValue.phone}
