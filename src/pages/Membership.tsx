@@ -7,6 +7,10 @@ import { FC } from "react";
 
 const sideLinks = [
   {
+    text: "Membership Categories",
+    link: "/membership/categories",
+  },
+  {
     text: "Membership Upgrade",
     link: "/membership/upgrade",
   },

@@ -45,7 +45,7 @@ const JoinNiprFct: FC<JoinNiprFctProps> = ({ bgImage }) => {
           </div>
 
           <Link
-            to={"/membership"}
+            to={"/membership/categories"}
             className={cn(
               buttonVariants({
                 className:

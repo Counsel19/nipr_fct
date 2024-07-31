@@ -12,11 +12,27 @@ const gallery = [
   },
   {
     id: "1",
-    image: "/images/explore_resources.jpg",
+    image: "/images/aboutus/image1.jpg",
   },
   {
     id: "1",
-    image: "/images/explore_resources.jpg",
+    image: "/images/aboutus/image2.jpg",
+  },
+  {
+    id: "1",
+    image: "/images/aboutus/image6.jpg",
+  },
+  {
+    id: "1",
+    image: "/images/aboutus/image3.jpg",
+  },
+  {
+    id: "1",
+    image: "/images/aboutus/image4.jpg",
+  },
+  {
+    id: "1",
+    image: "/images/aboutus/image5.jpg",
   },
 ];
 

@@ -31,7 +31,7 @@ interface OurBlogProps {}
 const OurBlog: FC<OurBlogProps> = () => {
   return (
     <div className="w-frame space-y-12">
-      <h3 className="text-[3.45rem] text-[#E8362B]">Our Blogs</h3>
+      <h3 className="text-[3.45rem] text-[#E8362B]">Our News</h3>
       <div className="grid lg:grid-cols-3 gap-12">
         {blogList.map((item) => (
           <React.Fragment key={item.id}>

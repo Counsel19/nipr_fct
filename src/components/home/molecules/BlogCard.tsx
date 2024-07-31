@@ -17,7 +17,7 @@ const BlogCard: FC<BlogCardProps> = ({
   postedOn,
 }) => {
   return (
-    <div className="bg-[#F7F7FF] shadow-md h-[60.2rem] ">
+    <Link to={"/news"} className="bg-[#F7F7FF] shadow-md h-[60.2rem] ">
       <img src={image} alt={image} className="h-[50%]" />
 
       <div className="p-12 h-[50%] flex flex-col justify-between gap-8">
@@ -41,7 +41,7 @@ const BlogCard: FC<BlogCardProps> = ({
           Read More
         </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

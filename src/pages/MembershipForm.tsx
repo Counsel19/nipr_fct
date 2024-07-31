@@ -8,6 +8,7 @@ import { applyForMembership } from "@/lib/redux/slices/membership/membershipThun
 import { AppDispatch, RootState } from "@/lib/redux/store";
 import { IMembershipForm, IQalification } from "@/types/membership";
 import { AxiosError } from "axios";
+import { format } from "date-fns";
 import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -92,14 +93,40 @@ const MembershipForm: FC<MembershipFormProps> = () => {
     try {
       if (!dateOfBirth || !currentGradeDate)
         return toast({ title: "Please Provide all Fields" });
-      const res = await dispatch(
-        applyForMembership({
-          ...inputValue,
-          qualifications: [qualification1, qualification2],
-          dob: dateOfBirth,
-          curernt_grade_date: currentGradeDate,
-        })
+
+      const formdata = new FormData();
+
+      for (const [key, value] of Object.entries(inputValue)) {
+        formdata.append(key, value);
+        key == "dob"
+          ? formdata.append(key, format(dateOfBirth, "yyyy-MM-dd"))
+          : key == "curernt_grade_date"
+          ? formdata.append(key, format(currentGradeDate, "yyyy-MM-dd"))
+          : key == "qualifications"
+          ? formdata.append(key, value)
+          : null;
+      }
+
+      formdata.append(
+        "qualifications[0][qualification_name]",
+        qualification1.qualification_name
       );
+      qualification1.qualification_image &&
+        formdata.append(
+          "qualifications[0][qualification_image]",
+          qualification1.qualification_image
+        );
+      formdata.append(
+        "qualifications[1][qualification_name]",
+        qualification2.qualification_name
+      );
+      qualification2.qualification_image &&
+        formdata.append(
+          "qualifications[1][qualification_image]",
+          qualification2.qualification_image
+        );
+
+      const res = await dispatch(applyForMembership(formdata));
       if (res.type.includes("rejected"))
         return toast({
           title: "An Error Occurred",
@@ -172,7 +199,7 @@ const MembershipForm: FC<MembershipFormProps> = () => {
           <div className="grid grid-cols-2 gap-8">
             <Button
               onClick={() => {
-                currentStep > 1 ? setCurrentStep(currentStep - 1) : null;
+                currentStep > 0 ? setCurrentStep(currentStep - 1) : null;
               }}
               variant={"outline"}
               className="w-full"

@@ -1,11 +1,12 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 
 interface BrandingProps {
   variant?: boolean;
 }
 const Branding: FC<BrandingProps> = ({ variant }) => {
   return (
-    <div className="flex items-end gap-3 w-[12rem]  ">
+    <Link to="/" className="flex items-end gap-3 w-[12rem]  ">
       <img
         src={variant ? "/images/brand-black.svg" : "/images/brand.svg"}
         alt="NIPR Logo"
@@ -16,7 +17,7 @@ const Branding: FC<BrandingProps> = ({ variant }) => {
         alt="NIPR Member of Gloabl Alliance"
         className="object-cover"
       />
-    </div>
+    </Link>
   );
 };
 

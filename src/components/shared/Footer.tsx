@@ -17,21 +17,15 @@ const quickLinks = [
     link: "/gallery",
   },
   {
-    text: "News & Media",
+    text: "News",
     link: "/news",
   },
-  {
-    text: "Contact Us",
-    link: "/contact",
-  },
+
   {
     text: "Membership",
     link: "/membership",
   },
-  {
-    text: "Payment",
-    link: "/payments",
-  },
+
   {
     text: "Resources",
     link: "/resources",
@@ -44,40 +38,35 @@ const addressList = [
     location:
       "Suit F9, 1st Floor, Fatima Plaza Opposite Holy Rosary Catholic Church, Wuse Zone 2, P.O Box 1992, Garki, Abuja Nigeria.",
   },
-  {
-    name: "NATIONAL HEADQUARTERS ABUJA",
-    location:
-      "Suit F9, 1st Floor, Fatima Plaza Opposite Holy Rosary Catholic Church, Wuse Zone 2, P.O Box 1992, Garki, Abuja Nigeria.",
-  },
 ];
 
 interface FooterProps {}
 const Footer: FC<FooterProps> = () => {
   return (
-    <div className="lg:h-[77.6rem] flex flex-col  bg-primary relative">
+    <div className="lg:h-[50.6rem] flex flex-col  bg-primary relative">
       <img
         src="/images/bgPatterns/footer_pattern.svg"
         alt="/images/bgPatterns/footer_pattern.svg"
         className="absolute top-0 lg:bottom-0 left-0  h-[15%] lg:h-full lg:w-[43%]"
       />
       <div className="w-frame lg:h-[90%] flex flex-col lg:flex-row">
-        <div className="lg:w-[40%] h-full flex p-[3rem] lg:py-[10rem] ">
+        <div className="lg:w-[40%] h-full flex p-[3rem] lg:py-[6rem] ">
           <div className="text-white space-y-16">
-            <h3 className="font-roboto uppercase font-medium text-2xl lg:text-[4rem] leading-[3rem] lg:leading-[4.6rem]">
+            <h3 className="font-roboto uppercase font-medium text-2xl lg:text-[3rem] leading-[3rem] lg:leading-[4.6rem]">
               Nigerian Institute of public relations
             </h3>
-            <h3 className=" text-[2.4rem] leading-[3.1rem] lg:text-[5.6rem] lg:leading-[7.465rem]">
+            <h3 className=" text-[2.4rem] leading-[3.1rem] lg:text-[4rem] lg:leading-[7.465rem]">
               Strategy, Influence, Responsibility
             </h3>
           </div>
         </div>
 
-        <div className="lg:w-[60%] flex text-white p-[3rem] lg:p-[10rem]">
+        <div className="lg:w-[60%] flex text-white p-[3rem] lg:p-[6rem]">
           <div className="grid lg:grid-cols-[2fr_3fr] gap-8">
             <div className="flex flex-col gap-12">
               {quickLinks.map((linkItem, index) => (
                 <Link
-                  className="text-[1.6rem] lg:text-2xl leading-[2.34rem]"
+                  className="text-[1.6rem] lg:text-[1.6rem] leading-[2.34rem]"
                   key={index}
                   to={linkItem.link}
                 >

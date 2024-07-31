@@ -1,5 +1,6 @@
 import LabledInput from "@/components/shared/molecules/LabledInput";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 import { IRegisterEvents } from "@/types/events";
 import React, { FC, useState } from "react";
 
@@ -16,11 +17,30 @@ const RegisterEventForm: FC<RegisterEventFormProps> = () => {
     surname: "",
   });
 
-  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleOnchange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const name = e.target.name;
     const value = e.target.value;
 
     setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    try {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        toast({
+          variant: "success",
+          title: "You have Successfully Registered for this evennt",
+        });
+      }, 3000);
+    } catch (error) {
+      console.log();
+    }
   };
 
   return (
@@ -86,7 +106,13 @@ const RegisterEventForm: FC<RegisterEventFormProps> = () => {
           <Button variant={"outline"} className="w-full">
             Cancel
           </Button>
-          <Button className="w-full bg-primary">Next</Button>
+          <Button
+            isLoading={isLoading}
+            onClick={handleSubmit}
+            className="w-full bg-primary"
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>

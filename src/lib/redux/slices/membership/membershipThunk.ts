@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { createAppAsyncThunk } from "../../createAppAsyncThunk";
-import { IMembershipForm } from "@/types/membership";
+// import { IMembershipForm } from "@/types/membership";
 
 // Add a request interceptor
 const axiosInstance = axios.create({
@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 
 export const applyForMembership = createAppAsyncThunk(
   "auth/register",
-  async (postPayload: IMembershipForm, thunkAPI) => {
+  async (postPayload: FormData, thunkAPI) => {
     try {
       await axiosInstance.post(
         `/user/apply`,

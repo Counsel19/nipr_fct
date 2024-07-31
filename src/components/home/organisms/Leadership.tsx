@@ -15,7 +15,7 @@ const leadershipList = [
   {
     name: "Haj. Maryam N. Sanusi",
     image: "/images/MaryamN.Sanusi.svg",
-    position: "President/Chairman of the Governing Council,",
+    position: "Vice President of the Governing Council,",
   },
 ];
 

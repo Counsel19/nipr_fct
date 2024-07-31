@@ -37,7 +37,15 @@ const Navbar: FC<NavbarProps> = () => {
     >
       <div className="w-frame flex justify-between items-center ">
         <Link to="/">
-          <Branding variant={userHasScrolled ? true : false} />
+          <Branding
+            variant={
+              !userHasScrolled && pathname === "/"
+                ? false
+                : userHasScrolled && pathname === "/"
+                ? true
+                : true
+            }
+          />
         </Link>
 
         <ul

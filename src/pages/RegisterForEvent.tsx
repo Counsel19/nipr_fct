@@ -7,11 +7,6 @@ const RegisterForEvent: FC<RegisterForEventProps> = () => {
   return (
     <div className="space-y-20 relative">
       <PageTitle title="Events" />
-      <img
-        src="/images/bgPatterns/events_pattern.svg"
-        alt="events_pattern "
-        className="absolute left-0 top-[24rem] h-fit w-fit"
-      />
 
       <div className="w-frame pagePadding ">
         <div className="relative rounded-3xl z-20 bg-white py-12">

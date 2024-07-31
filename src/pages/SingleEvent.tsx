@@ -34,11 +34,7 @@ const SingleEvent: FC<SingleEventProps> = () => {
   return (
     <div className=" space-y-20 relative">
       <PageTitle title="Events" />
-      <img
-        src="/images/bgPatterns/events_pattern.svg"
-        alt="events_pattern "
-        className="absolute left-0 top-[24rem] h-fit w-fit"
-      />
+
       <img
         src={singleEventDetails.image}
         alt={singleEventDetails.image}

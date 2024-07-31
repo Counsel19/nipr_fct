@@ -74,7 +74,7 @@ const Login: FC<LoginProps> = () => {
 
               <Button className="w-full bg-primary">Sign In</Button>
 
-              <div className="space-x-2 text-center">
+              {/* <div className="space-x-2 text-center">
                 <span className="text-base text-[#667085]">
                   Don’t have an account?
                 </span>
@@ -84,7 +84,7 @@ const Login: FC<LoginProps> = () => {
                 >
                   Sign Up
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

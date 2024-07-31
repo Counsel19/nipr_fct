@@ -43,7 +43,7 @@ const Register: FC<LoginProps> = () => {
             </h3>
 
             <p className="text-[1.6rem] leading-[1.6rem] text-[#667085]">
-              Start your 30-day free trial.
+              Comings! Please enter your details
             </p>
 
             <div className="space-y-8 w-full">
