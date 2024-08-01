@@ -59,7 +59,7 @@ const Navbar: FC<NavbarProps> = () => {
           )}
         >
           {navLinks.map((navItem) => (
-            <li>
+            <li key={navItem.link}>
               <Link
                 className={cn(
                   "p-5 hover:text-white hover:bg-[#871C1F8C] hover:border-b-[4px] border-[#231F20] rounded-md",
