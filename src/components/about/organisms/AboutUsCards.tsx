@@ -30,6 +30,11 @@ const sideLinks = [
     text: "Facts About Nipr",
     link: "/about/facts-about-nipr",
   },
+  {
+    text: " NIPR National",
+    link: "https://www.niprng.org.ng",
+    newTab: true
+  },
 ];
 
 interface AboutUsCardsProps {}

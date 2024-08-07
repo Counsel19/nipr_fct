@@ -50,7 +50,7 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({
               className="font-medium text-base leading-[2.03rem]"
               htmlFor=""
             >
-              if yes, what is your current grade of membership
+              Date of birth
             </label>
             <div className="w-full">
               <SelectDate

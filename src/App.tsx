@@ -29,6 +29,7 @@ axios.defaults.baseURL = "https://api.voranaija.com/api";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
@@ -60,8 +61,6 @@ function App() {
           <Route path="passwords" element={<UpdatePassword />} />
         </Route>
       </Routes>
-
-      <ScrollToTop />
     </BrowserRouter>
   );
 }

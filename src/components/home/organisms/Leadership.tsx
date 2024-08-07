@@ -8,14 +8,14 @@ const leadershipList = [
     position: "Current Chairman of the NIPR FCT Chapter",
   },
   {
-    name: "Mrs. Olubunmi Badejo",
-    image: "/images/OlubunmiBadejo.svg",
-    position: "President/Chairman of the Governing Council,",
+    name: "Edward Ọlásúnkànmí Adébánjọ, FNIPR.",
+    image: "/images/EdwardOA.jpg",
+    position: "Vice Chairman.",
   },
   {
-    name: "Haj. Maryam N. Sanusi",
-    image: "/images/MaryamN.Sanusi.svg",
-    position: "Vice President of the Governing Council,",
+    name: "Chiamaka Obi-Okafor",
+    image: "/images/ChiamakaObi-Okafor.jpg",
+    position: "NIPR FCT Secretary",
   },
 ];
 
@@ -27,7 +27,7 @@ const Leadership: FC<LeadershipProps> = () => {
         <h3 className="font-bold text-[3rem] lg:text-[3.457rem] leading-[3.8rem] text-[#E8362B]">
           FCT Chapter Leadership
         </h3>
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="grid grid-cols-3 gap-12 ">
           {leadershipList.map((leader, index) => (
             <React.Fragment key={index}>
               <LeadershipCard {...leader} />

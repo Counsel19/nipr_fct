@@ -1,3 +1,4 @@
+import CustomLoader from "@/components/shared/atoms/CustomLoader";
 import FileUpload from "@/components/shared/FileUpload";
 import LabledInput from "@/components/shared/molecules/LabledInput";
 import SelectDate from "@/components/shared/SelectDate";
@@ -8,8 +9,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { fetchAllGrades } from "@/lib/redux/slices/grade/gradeThunk";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import { IMembershipForm, IQalification } from "@/types/membership";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const isDevotionList = [
   {
@@ -66,6 +70,21 @@ const CareerDetails: FC<CareerDetailsProps> = ({
   setQualification1,
   setQualification2,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { allGrades } = useSelector((store: RootState) => store.grade);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await dispatch(fetchAllGrades());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className="space-y-12">
       <div className="space-y-8">
@@ -156,27 +175,33 @@ const CareerDetails: FC<CareerDetailsProps> = ({
             if yes, what is your current grade of membership
           </label>
           <Select
-            onValueChange={(value) => handleSelectChange(value, "is_member")}
+            onValueChange={(value) => handleSelectChange(value, "grade_id")}
           >
             <SelectTrigger className="bg-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0 ">
               <SelectValue placeholder="-Select-" />
             </SelectTrigger>
             <SelectContent>
-              {isMemberList.map((choice) => (
-                <SelectItem
-                  key={choice.id}
-                  value={choice.id.toString()}
-                  className="text-base p-3"
-                >
-                  {choice.name}
-                </SelectItem>
-              ))}
+              {allGrades ? (
+                allGrades.map((choice) => (
+                  <SelectItem
+                    key={choice.id}
+                    value={choice.id.toString()}
+                    className="text-base p-3"
+                  >
+                    {choice.name}
+                  </SelectItem>
+                ))
+              ) : (
+                <div>
+                  <CustomLoader width={24} height={24} />
+                </div>
+              )}
             </SelectContent>
           </Select>
         </div>
         <div className="space-y-4 flex flex-col">
           <label className="font-medium text-base leading-[2.03rem]" htmlFor="">
-            if yes, what is your current grade of membership
+          Date elected to your current grade
           </label>
           <div className="w-full">
             <SelectDate

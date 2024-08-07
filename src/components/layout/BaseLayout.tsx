@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 interface BaseLayoutProps {}
 const BaseLayout: FC<BaseLayoutProps> = () => {
   const { pathname } = useLocation();
+
   return (
     <div>
       <>
