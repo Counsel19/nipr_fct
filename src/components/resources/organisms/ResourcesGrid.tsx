@@ -1,62 +1,29 @@
 import React, { FC } from "react";
 import ResourceCard from "../molecules/ResourceCard";
-
-
-const allResources = [
-  {
-    id: "1",
-    image: "/images/attend_events.jpg",
-    postedOn: new Date().toString(),
-    title: "Bill Walsh leadership lessons",
-    body: "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-  },
-  {
-    id: "2",
-    postedOn: new Date().toString(),
-    image: "/images/attend_events.jpg",
-    title: "Bill Walsh leadership lessons",
-    body: "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-  },
-  {
-    id: "3",
-    postedOn: new Date().toString(),
-    image: "/images/attend_events.jpg",
-    title: "Bill Walsh leadership lessons",
-    body: "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-  },
-  {
-    id: "4",
-    image: "/images/attend_events.jpg",
-    postedOn: new Date().toString(),
-    title: "Bill Walsh leadership lessons",
-    body: "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-  },
-  {
-    id: "5",
-    postedOn: new Date().toString(),
-    image: "/images/attend_events.jpg",
-    title: "Bill Walsh leadership lessons",
-    body: "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-  },
-  {
-    id: "6",
-    postedOn: new Date().toString(),
-    image: "/images/attend_events.jpg",
-    title: "Bill Walsh leadership lessons",
-    body: "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-  },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import PageLoader from "@/components/shared/PageLoader";
 
 interface ResourcesGridProps {}
 const ResourcesGrid: FC<ResourcesGridProps> = () => {
+  const { allResources } = useSelector((store: RootState) => store.resources);
+
   return (
     <div className="grid lg:grid-cols-3 gap-12">
+      {allResources && allResources.length > 0 ? (
+        allResources.map((resource) => (
+          <React.Fragment key={resource.id}>
+            <ResourceCard data={resource}  />
+          </React.Fragment>
+        ))
+      ) : allResources && allResources.length == 0 ? (
+        <h3> No Held Resource at the Moment</h3>
+      ) : (
+        <div className="col-span-2">
+          <PageLoader />
+        </div>
+      )}
 
-      {allResources.map((resource, index) => (
-        <React.Fragment key={index}>
-          <ResourceCard {...resource} />
-        </React.Fragment>
-      ))}
     </div>
   );
 };

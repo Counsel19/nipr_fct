@@ -30,7 +30,7 @@ const MemberTypeCard: FC<MemberTypeCardProps> = ({
           {slug.split("-").join(" ")}
         </Link>
       </div>
-      <p className=" hidden group-hover:flex text-2xl leading-[3rem] transition-all duration-1000  ease-out">
+      <p className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-[200px] group-hover:opacity-100 text-2xl leading-[3rem] transition-all duration-1000 ease-out">
         {description}
       </p>
     </div>

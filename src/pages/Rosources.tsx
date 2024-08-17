@@ -2,10 +2,28 @@ import ResourcesGrid from "@/components/resources/organisms/ResourcesGrid";
 import PageTitle from "@/components/shared/molecules/PageTitle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FC } from "react";
+import { fetchResource } from "@/lib/redux/slices/resource/resourceThunk";
+import { AppDispatch } from "@/lib/redux/store";
+import { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 interface RosourcesProps {}
 const Rosources: FC<RosourcesProps> = () => {
+
+
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await dispatch(fetchResource());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className="space-y-20">
       <PageTitle title="Resources" />

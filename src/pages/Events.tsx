@@ -2,10 +2,26 @@ import HeldEvents from "@/components/events/organisms/HeldEvents";
 import UpcomingEvents from "@/components/home/organisms/UpcomingEvents";
 import HaveAQuestion from "@/components/shared/molecules/HaveAQuestion";
 import PageTitle from "@/components/shared/molecules/PageTitle";
-import { FC } from "react";
+import { fetchAllEvents } from "@/lib/redux/slices/events/eventsThunk";
+import { AppDispatch } from "@/lib/redux/store";
+import { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 interface EventsProps {}
 const Events: FC<EventsProps> = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await dispatch(fetchAllEvents());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className=" space-y-20 relative">
       <PageTitle title="Events" />

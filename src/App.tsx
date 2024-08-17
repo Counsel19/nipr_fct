@@ -23,6 +23,7 @@ import Rosources from "./pages/Rosources";
 import Gallery from "./pages/Gallery";
 import PaymentPage from "./pages/PaymentPage";
 import MembershipCategories from "./pages/MembershipCategories";
+import SingleNewsPost from "./pages/SingleNewsPost";
 
 axios.defaults.baseURL = "https://api.voranaija.com/api";
 
@@ -40,8 +41,11 @@ function App() {
             <Route path="facts-about-nipr" element={<FactAboutNipr />} />
           </Route>
           <Route path="events" element={<Events />} />
-          <Route path="events/:slug" element={<SingleEvent />} />
-          <Route path="events/:slug/register" element={<RegisterForEvent />} />
+          <Route path="events/:eventId" element={<SingleEvent />} />
+          <Route
+            path="events/:eventId/register"
+            element={<RegisterForEvent />}
+          />
           <Route path="membership">
             <Route index element={<Membership />} />
             <Route path="categories" element={<MembershipCategories />} />
@@ -53,7 +57,10 @@ function App() {
           </Route>
           <Route path="gallery" element={<Gallery />} />
           <Route path="resources" element={<Rosources />} />
-          <Route path="news" element={<News />} />
+          <Route path="news">
+            <Route index element={<News />} />
+            <Route path=":newsPostId" element={<SingleNewsPost />} />
+          </Route>
           <Route path="*" element={<ComingSoon />} />
         </Route>
         <Route path="account" element={<AccountLayout />}>

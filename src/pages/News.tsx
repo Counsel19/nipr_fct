@@ -2,10 +2,25 @@ import NewsGrid from "@/components/news/organisms/NewsGrid";
 import PageTitle from "@/components/shared/molecules/PageTitle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FC } from "react";
+import { fetchAllNewsPost } from "@/lib/redux/slices/news/newsThunk";
+import { AppDispatch } from "@/lib/redux/store";
+import { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 interface NewsProps {}
 const News: FC<NewsProps> = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await dispatch(fetchAllNewsPost());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
   return (
     <div className="space-y-20">
       <PageTitle title="News" />

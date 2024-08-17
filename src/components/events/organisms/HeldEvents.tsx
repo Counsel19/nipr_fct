@@ -1,39 +1,29 @@
 import UpcomingEventCard from "@/components/home/molecules/UpcomingEventCard";
+import PageLoader from "@/components/shared/PageLoader";
+import { RootState } from "@/lib/redux/store";
 import React, { FC } from "react";
-
-const allEvents = [
-  {
-    id: "1",
-    image: "/images/nipr_annual_conf.jpg",
-    theme: "Annual general meeting",
-    slug: "Annual-general-meeting",
-    description:
-      "This is the 2024 Annual General Meeting. All members are encouraged to attend.",
-    venue: "NIPR Headquarters",
-    date: "2024-06-10T11:43:35.000000Z",
-  },
-  {
-    id: "2",
-    image: "/images/nipr_annual_conf.jpg",
-    theme: "Annual general meeting",
-    slug: "Annual-general-meeting",
-    description:
-      "This is the 2024 Annual General Meeting. All members are encouraged to attend.",
-    venue: "NIPR Headquarters",
-    date: "2024-06-10T11:43:35.000000Z",
-  },
-];
+import { useSelector } from "react-redux";
 
 interface HeldEventsProps {}
 const HeldEvents: FC<HeldEventsProps> = () => {
+  const { heldEvents } = useSelector((store: RootState) => store.events);
+
   return (
     <div className="w-frame space-y-12">
       <div className="grid lg:grid-cols-2 gap-10">
-        {allEvents.map((event) => (
-          <React.Fragment key={event.id}>
-            <UpcomingEventCard {...event} />
-          </React.Fragment>
-        ))}
+        {heldEvents && heldEvents.length > 0 ? (
+          heldEvents.map((event) => (
+            <React.Fragment key={event.id}>
+              <UpcomingEventCard data={event} />
+            </React.Fragment>
+          ))
+        ) : heldEvents && heldEvents.length == 0 ? (
+          <h3> No Held Events at the Moment</h3>
+        ) : (
+          <div className="col-span-2">
+          <PageLoader />
+        </div>
+        )}
       </div>
     </div>
   );

@@ -1,43 +1,26 @@
 import PageTitle from "@/components/shared/molecules/PageTitle";
-import { FC } from "react";
-
-const gallery = [
-  {
-    id: "1",
-    image: "/images/attend_events.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/become_a_member.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/aboutus/image1.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/aboutus/image2.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/aboutus/image6.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/aboutus/image3.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/aboutus/image4.jpg",
-  },
-  {
-    id: "1",
-    image: "/images/aboutus/image5.jpg",
-  },
-];
+import { fetchGallery } from "@/lib/redux/slices/gallery/galleryThunk";
+import { AppDispatch, RootState } from "@/lib/redux/store";
+import { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 interface GalleryProps {}
 const Gallery: FC<GalleryProps> = () => {
+  const { gallery } = useSelector((store: RootState) => store.gallery);
+
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await dispatch(fetchGallery());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <div className="space-y-28">
       <PageTitle title="Gallery" />
@@ -53,11 +36,11 @@ const Gallery: FC<GalleryProps> = () => {
         </div>
 
         <div className="grid gap-12 lg:grid-cols-3">
-          {gallery.map((item, index) => (
+          {gallery?.map((item, index) => (
             <img
               key={index}
-              src={item.image}
-              alt={item.image}
+              src={item.path}
+              alt={item.path}
               className="h-[35rem]"
             />
           ))}

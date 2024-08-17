@@ -1,7 +1,7 @@
 import LabledInput from "@/components/shared/molecules/LabledInput";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { IRegisterEvents } from "@/types/events";
+import { IRegisterEvents } from "@/types/event";
 import React, { FC, useState } from "react";
 
 interface RegisterEventFormProps {}
