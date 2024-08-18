@@ -117,12 +117,6 @@ const Footer: FC<FooterProps> = () => {
           <span>© Nigerian Institute of public relations</span>
           <ul className="flex gap-4 items-center">
             <li>
-              <Link to="/feeds">Feeds</Link>
-            </li>
-            <li>
-              <Link to="/copyright">Copyright</Link>
-            </li>
-            <li>
               <Link to="/terms-and-condition">Terms And Condition</Link>
             </li>
             <li>

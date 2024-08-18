@@ -2,16 +2,21 @@ import ResourcesGrid from "@/components/resources/organisms/ResourcesGrid";
 import PageTitle from "@/components/shared/molecules/PageTitle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  handleSearchResource,
+  updateResourceStateValues,
+} from "@/lib/redux/slices/resource/resourceSlice";
 import { fetchResource } from "@/lib/redux/slices/resource/resourceThunk";
 import { AppDispatch } from "@/lib/redux/store";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 interface RosourcesProps {}
 const Rosources: FC<RosourcesProps> = () => {
-
+  const [search, setSearch] = useState("");
 
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -24,6 +29,17 @@ const Rosources: FC<RosourcesProps> = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (search == "") {
+      dispatch(
+        updateResourceStateValues({
+          name: "filteredResource",
+          value: null,
+        })
+      );
+    }
+  }, [search]);
+
   return (
     <div className="space-y-20">
       <PageTitle title="Resources" />
@@ -34,10 +50,21 @@ const Rosources: FC<RosourcesProps> = () => {
           </h3>
           <p className="text-[#667085] text-center text-[1.6rem] lg:text-2xl leading-[3rem]"></p>
 
-          <div className="flex flex-col lg:flex-row gap-6 ">
-            <Input className="flex-1" placeholder="Search here for Resources" />
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              dispatch(handleSearchResource(search));
+            }}
+            className="flex flex-col lg:flex-row gap-6 "
+          >
+            <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="flex-1"
+              placeholder="Search here for Resources"
+            />
             <Button className="h-full w-full lg:w-fit">Search</Button>
-          </div>
+          </form>
         </div>
 
         <div>

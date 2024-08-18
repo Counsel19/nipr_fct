@@ -1,5 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { PhoneCallIcon } from "lucide-react";
 import { FC } from "react";
 // import { Link } from "react-router-dom";
 
@@ -13,16 +12,10 @@ const HaveAQuestion: FC<HaveAQuestionProps> = () => {
       <p className=" text-base lg:text-[1.8rem] leading-[3.13rem]">
         Please reach out to us for more information.
       </p>
-      <Button
-        // to={"/contact"}
-        className={cn(
-          buttonVariants({
-            className: " bg-[#F6453C] text-white font-light rounded-[2rem]",
-          })
-        )}
-      >
-        CONTACT US
-      </Button>
+      <div className="bg-primary text-base text-white gap-4 flex items-center p-6 rounded-[2rem]">
+        <PhoneCallIcon />
+        <span>+2348060126048</span>
+      </div>
     </div>
   );
 };

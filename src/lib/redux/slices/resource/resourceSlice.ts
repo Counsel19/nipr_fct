@@ -1,10 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchResource, fetchSingleResource } from "./resourceThunk";
 import { IResource } from "@/types/resource";
+import Fuse from "fuse.js";
+
+interface UpdateStatePayload {
+  name: keyof resourceSliceState;
+  value: unknown;
+}
 
 interface resourceSliceState {
+  [key: string]: unknown;
   isLoading: boolean;
   allResources: IResource[] | null;
+  filteredResource: IResource[] | null;
   selectedResourceItem: IResource | null;
   error: string;
 }
@@ -14,16 +22,40 @@ interface resourceSliceState {
 const initialState: resourceSliceState = {
   isLoading: false,
   allResources: null,
+  filteredResource: null,
   selectedResourceItem: null,
   error: "",
+};
+
+const options = {
+  includeScore: true,
+  includeMatches: true,
+  threshold: 0.2,
+  keys: ["title", "desc"],
 };
 
 const resourceSlice = createSlice({
   name: "resource",
   initialState,
   reducers: {
-    selectResource: (state, action) => {
-      state.selectedResourceItem = action.payload;
+    updateResourceStateValues: (
+      state,
+      action: PayloadAction<UpdateStatePayload>
+    ) => {
+      state[action.payload.name] = action.payload.value;
+    },
+
+    handleSearchResource: (state, action) => {
+      if (state.allResources) {
+        const fuse = new Fuse(state.allResources, options);
+        const value = action.payload;
+
+        const results = fuse.search(value);
+
+        const items = results.map((result) => result.item);
+
+        state.filteredResource = items;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -53,6 +85,7 @@ const resourceSlice = createSlice({
   },
 });
 
-export const { selectResource } = resourceSlice.actions;
+export const { updateResourceStateValues, handleSearchResource } =
+  resourceSlice.actions;
 
 export default resourceSlice.reducer;

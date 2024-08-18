@@ -11,14 +11,14 @@ const ResourceCard: FC<ResourceCardProps> = ({
   data: { desc, file, thumbnail, title },
 }) => {
   return (
-    <div>
+    <div className="border rounded-xl p-3 space-y-6">
       <img
         src={thumbnail as string}
         alt={thumbnail as string}
-        className="h-[5.5rem] rounded-md"
+        className="h-[7rem] rounded-md"
       />
-      <div className="flex gap-12 items-center">
-        <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <div className="">
           <h5 className="font-semibold text-primary text-[2.2rem] leading-[3rem]">
             {title}
           </h5>

@@ -1,10 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchAllNewsPost, fetchNewsPostById } from "./newsThunk";
 import { INews } from "@/types/news";
+import Fuse from "fuse.js";
+
+interface UpdateStatePayload {
+  name: keyof newsSliceState;
+  value: unknown;
+}
 
 interface newsSliceState {
+  [key: string]: unknown;
   isLoading: boolean;
   allNewsPost: INews[] | null;
+  filteredNewsPost: INews[] | null;
   singleNewsPost: INews | null;
   error: string;
 }
@@ -14,14 +22,41 @@ interface newsSliceState {
 const initialState: newsSliceState = {
   isLoading: false,
   allNewsPost: null,
+  filteredNewsPost: null,
   singleNewsPost: null,
   error: "",
+};
+
+const options = {
+  includeScore: true,
+  includeMatches: true,
+  threshold: 0.2,
+  keys: ["title", "body"],
 };
 
 const newsSlice = createSlice({
   name: "news",
   initialState,
-  reducers: {},
+  reducers: {
+    updateNewsStateValues: (
+      state,
+      action: PayloadAction<UpdateStatePayload>
+    ) => {
+      state[action.payload.name] = action.payload.value;
+    },
+    handleSearchNews: (state, action) => {
+      if (state.allNewsPost) {
+        const fuse = new Fuse(state.allNewsPost, options);
+        const value = action.payload;
+
+        const results = fuse.search(value);
+
+        const items = results.map((result) => result.item);
+
+        state.filteredNewsPost = items;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllNewsPost.pending, (state) => {
@@ -50,6 +85,6 @@ const newsSlice = createSlice({
   },
 });
 
-// export const {} = newsSlice.actions;
+export const { updateNewsStateValues, handleSearchNews } = newsSlice.actions;
 
 export default newsSlice.reducer;

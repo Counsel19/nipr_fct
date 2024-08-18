@@ -2,13 +2,19 @@ import NewsGrid from "@/components/news/organisms/NewsGrid";
 import PageTitle from "@/components/shared/molecules/PageTitle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  handleSearchNews,
+  updateNewsStateValues,
+} from "@/lib/redux/slices/news/newsSlice";
 import { fetchAllNewsPost } from "@/lib/redux/slices/news/newsThunk";
 import { AppDispatch } from "@/lib/redux/store";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 interface NewsProps {}
 const News: FC<NewsProps> = () => {
+  const [search, setSearch] = useState("");
+
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     const getData = async () => {
@@ -21,6 +27,18 @@ const News: FC<NewsProps> = () => {
 
     getData();
   }, []);
+
+  useEffect(() => {
+    if (search == "") {
+      dispatch(
+        updateNewsStateValues({
+          name: "filteredNewsPost",
+          value: null,
+        })
+      );
+    }
+  }, [dispatch, search]);
+
   return (
     <div className="space-y-20">
       <PageTitle title="News" />
@@ -34,10 +52,21 @@ const News: FC<NewsProps> = () => {
           </h3>
           <p className="text-[#667085] text-center text-[1.6rem] lg:text-2xl leading-[3rem]"></p>
 
-          <div className="flex flex-col lg:flex-row gap-6 ">
-            <Input className="flex-1" placeholder="Search here for news" />
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              dispatch(handleSearchNews(search));
+            }}
+            className="flex flex-col lg:flex-row gap-6 "
+          >
+            <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="flex-1"
+              placeholder="Search here for news"
+            />
             <Button className="h-full w-full lg:w-fit">Search</Button>
-          </div>
+          </form>
         </div>
 
         <div>
