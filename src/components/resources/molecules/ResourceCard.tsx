@@ -15,28 +15,27 @@ const ResourceCard: FC<ResourceCardProps> = ({
       <img
         src={thumbnail as string}
         alt={thumbnail as string}
-        className="h-[7rem] rounded-md"
+        className="h-[20rem] rounded-md"
       />
-      <div className="flex justify-between items-center">
-        <div className="">
-          <h5 className="font-semibold text-primary text-[2.2rem] leading-[3rem]">
+
+      <div className="space-y-4">
+        <div className="flex justify-between items-start">
+          <h5 className="font-semibold text-primary text-[2rem] leading-[2.5rem]">
             {title}
           </h5>
-          <p className="text-[1.6rem] text-[#667085] leading-[2.4rem]">
-            {desc}
-          </p>
+          <a
+            className={cn(
+              buttonVariants({
+                variant: "ghost",
+              })
+            )}
+            download
+            href={file}
+          >
+            <Download />
+          </a>
         </div>
-        <a
-          className={cn(
-            buttonVariants({
-              variant: "ghost",
-            })
-          )}
-          download
-          href={file}
-        >
-          <Download />
-        </a>
+        <p className="text-[1.4rem] text-[#667085] leading-[2.4rem]">{desc}</p>
       </div>
     </div>
   );

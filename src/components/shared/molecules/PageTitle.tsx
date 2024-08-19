@@ -11,7 +11,7 @@ const PageTitle: FC<PageTitleProps> = ({ title }) => {
       <div className='bg-[url("/images/bgPatterns/page_title_pattern.svg")] bg-no-repeat bg-cover flex items-center relative h-[15rem]'>
         <div className="bg-[#00000099] absolute top-0 right-0 bottom-0 left-0" />
 
-        <div className="w-frame relative text-white lg:p-[10rem]">
+        <div className="w-frame relative text-white lg:px-[10rem]">
           <h3 className="font-semibold leading-[5rem] text-[3.2rem] lg:text-[5rem]">
             {title}
           </h3>

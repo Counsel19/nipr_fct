@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import NewsCard from "../molecules/NewsCard";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import PageLoader from "@/components/shared/PageLoader";
 import { INews } from "@/types/news";
+import { fetchAllNewsPost } from "@/lib/redux/slices/news/newsThunk";
 
 interface NewsGridProps {
   sliceAt?: number;
@@ -13,6 +14,18 @@ const NewsGrid: FC<NewsGridProps> = ({ sliceAt }) => {
   const { allNewsPost, filteredNewsPost } = useSelector(
     (store: RootState) => store.news
   );
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        await dispatch(fetchAllNewsPost());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     if (filteredNewsPost) {

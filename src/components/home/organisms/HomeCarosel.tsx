@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Carouseltem from "../molecules/Carouseltem";
 import CarouselDotNav from "../molecules/CarouselDotNav";
 
@@ -33,6 +33,16 @@ const carouselList = [
 
 const HomeCarosel: FC<HomeCaroselProps> = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((current) => (current + 1) % carouselList.length);
+    }, 5000);
+
+    return () => clearInterval(slideInterval);
+  }, []);
+
+
   return (
     <div className="relative">
       {carouselList.map((item, index) => (
