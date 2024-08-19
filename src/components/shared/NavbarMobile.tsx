@@ -1,15 +1,41 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Branding from "./atoms/Branding";
 import { AlignJustify, X } from "lucide-react";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavbarMobileProps {}
 const NavbarMobile: FC<NavbarMobileProps> = () => {
   const [showNav, setShowNav] = useState(false);
+  const [userHasScrolled, setUserHasScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  const handleScroll = () => {
+    if (window.scrollY >= 20) {
+      setUserHasScrolled(true);
+    } else {
+      setUserHasScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="flex p-4  justify-between items-center">
-      <Branding />
+      <Branding
+        variant={
+          !userHasScrolled && pathname === "/"
+            ? false
+            : userHasScrolled && pathname === "/"
+            ? true
+            : true
+        }
+      />
 
       <Button onClick={() => setShowNav(true)} variant={"ghost"}>
         <AlignJustify />

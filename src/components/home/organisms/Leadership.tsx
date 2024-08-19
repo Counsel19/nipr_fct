@@ -27,7 +27,7 @@ const Leadership: FC<LeadershipProps> = () => {
         <h3 className="font-bold text-[3rem] lg:text-[3.457rem] leading-[3.8rem] text-[#E8362B]">
           FCT Chapter Leadership
         </h3>
-        <div className="grid grid-cols-3 gap-12 ">
+        <div className="grid lg:grid-cols-3 gap-12 ">
           {leadershipList.map((leader, index) => (
             <React.Fragment key={index}>
               <LeadershipCard {...leader} />

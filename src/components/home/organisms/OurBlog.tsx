@@ -7,7 +7,7 @@ const OurBlog: FC<OurBlogProps> = () => {
   return (
     <div className="w-frame space-y-12">
       <h3 className="text-[3.45rem] text-[#E8362B]">Our News</h3>
-      <NewsGrid sliceAt={3}  />
+      <NewsGrid sliceAt={4}  />
     </div>
   );
 };
